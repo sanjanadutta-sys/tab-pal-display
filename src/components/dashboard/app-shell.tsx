@@ -4,7 +4,8 @@ import { LayoutDashboard, Mail, Bot, MessageCircle, Boxes, Clock3, ShieldCheck, 
 import { Button } from "@/components/ui/button";
 import { navItems } from "@/lib/dashboard-data";
 import { cn } from "@/lib/utils";
-import intLogo from "@/assets/int-logo.jpg.asset.json";
+
+const intLogoUrl = "/int25yearslogo.jpg";
 
 const icons: Record<string, ComponentType<{ className?: string }>> = { LayoutDashboard, Mail, Bot, MessageCircle, Boxes, Clock3, ShieldCheck, BarChart3, Settings };
 
@@ -22,10 +23,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   return <div className="min-h-screen bg-background text-foreground">
-    <aside className={cn("fixed inset-y-0 left-0 z-30 hidden border-r border-sidebar-border bg-sidebar transition-[width] duration-200 lg:flex lg:flex-col", collapsed ? "w-[68px]" : "w-[232px]")}>
+    <aside className={cn("fixed inset-y-0 left-0 z-30 hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-[width] duration-200 lg:flex lg:flex-col", collapsed ? "w-[68px]" : "w-[232px]")}>
       <div className={cn("flex h-[72px] items-center border-b border-sidebar-border px-4", collapsed ? "justify-center" : "gap-3")}>
-        <img src={intLogo.url} alt="INT logo" className="size-10 shrink-0 rounded-full object-cover" />
-        {!collapsed && <div><p className="font-display text-base font-bold leading-tight">INT</p><p className="text-[10px] text-sidebar-foreground/55">AI CUSTOMER OPERATIONS</p></div>}
+        <img src={intLogoUrl} alt="INT logo" className="size-10 shrink-0 rounded-full object-cover" />
+        {!collapsed && <div><p className="font-display text-base font-bold leading-tight text-sidebar-foreground">INT</p><p className="text-[10px] text-sidebar-foreground/55">AI CUSTOMER OPERATIONS</p></div>}
       </div>
       <div className="flex-1 overflow-y-auto py-4"><Navigation compact={collapsed} /></div>
       {!collapsed && <div className="m-3 border-t border-sidebar-border px-2 pt-4"><p className="text-xs font-semibold">Building trust, one reply at a time.</p><div className="mt-3 flex h-1 overflow-hidden rounded-full"><span className="w-1/3 bg-brand-mark"/><span className="w-1/3 bg-primary"/><span className="w-1/3 bg-success"/></div></div>}
@@ -44,7 +45,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="grid size-9 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">TB</div>
         </div>
       </header>
-      {mobileOpen && <div className="fixed inset-x-0 top-[72px] z-20 border-b border-border bg-sidebar text-sidebar-foreground shadow-lg lg:hidden"><div className="flex items-center justify-between border-b border-sidebar-border px-5 py-4"><div className="flex items-center gap-3"><img src={intLogo.url} alt="INT logo" className="size-10 shrink-0 rounded-full object-cover"/><strong>INT</strong></div><Button variant="ghost" size="icon" aria-label="Close navigation" onClick={() => setMobileOpen(false)}><X/></Button></div><div className="py-4"><Navigation onNavigate={() => setMobileOpen(false)}/></div></div>}
+      {mobileOpen && <div className="fixed inset-x-0 top-[72px] z-20 border-b border-border bg-sidebar text-sidebar-foreground shadow-lg lg:hidden"><div className="flex items-center justify-between border-b border-sidebar-border px-5 py-4"><div className="flex items-center gap-3"><img src={intLogoUrl} alt="INT logo" className="size-10 shrink-0 rounded-full object-cover"/><strong className="text-sidebar-foreground">INT</strong></div><Button variant="ghost" size="icon" aria-label="Close navigation" onClick={() => setMobileOpen(false)}><X/></Button></div><div className="py-4"><Navigation onNavigate={() => setMobileOpen(false)}/></div></div>}
       <main className="min-h-[calc(100vh-72px)] p-3 md:p-5">{children}</main>
     </div>
   </div>;
